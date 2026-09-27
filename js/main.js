@@ -1,0 +1,248 @@
+const el = id => document.getElementById(id);
+const FPS = 30;
+
+function toTextStyle(text,style="",id) { return `<text-style text="${style}" ${id ? `id="${id}"` : ""}>${text}</text-style>` }
+function toColoredText(text,color="") { return Array.isArray(text) ? text.map(x => toColoredText(x,color)) : `<text-style style="color:${color}">${text}</text-style>` }
+function compareStyle(text,x,y) { return Decimal.eq(x,y)?toTextStyle(text):Decimal.gte(x,y)?toTextStyle(icon("up-arrow")+text,"green"):toTextStyle(icon("down-arrow")+text,"red") }
+
+var player = {}, date = Date.now(), diff = 0;
+
+function loop() {
+    if (offline.active) return
+
+    if (!tmp.omni.pause && !player.end) {
+        REBIRTH.temp();
+        updateTemp();
+    }
+
+    diff = Date.now()-date;
+    
+    if (!tmp.omni.pause && !player.end) {
+        updateOptions()
+        updateHTML()
+        calc(diff/1000)
+    }
+    
+    date = Date.now()
+}
+
+const TOP_CURR = [
+    {
+        unl: ()=>!player.omni.active,
+        curr: "prestige",
+        req: ()=>player.total_fish.gte(CURRENCIES.prestige.require),
+    },
+    {
+        unl: ()=>!player.omni.active&&(player.core.times > 0 || hasDepthMilestone(0,4)),
+        curr: "core",
+        req: ()=>player.prestige.total.gte(CURRENCIES.core.require),
+    },
+    {
+        unl: ()=>!player.omni.active&&(player.humanoid.times > 0 || player.feature >= 10),
+        curr: "humanoid",
+        req: ()=>player.fish.gte(CURRENCIES.humanoid.require),
+    },
+    {
+        unl: ()=>!player.omni.active&&(player.feature >= 18 && !tmp.ss_difficulty),
+        reset: "sacrifice",
+        curr: "dark-matter",
+        req: ()=>player.fish.gte(CURRENCIES['dark-matter'].require) && player.singularity.bh.gte(8),
+    },
+    {
+        unl: ()=>!player.omni.active&&tmp.ss_difficulty >= 2,
+        curr: "reserv",
+        req: ()=>player.solar_system.observ.gte(CURRENCIES.reserv.require),
+    },
+    {
+        unl: ()=>!player.omni.active&&tmp.ss_difficulty >= 4,
+        curr: "traject",
+        req: ()=>player.solar_system.reserv.gte(CURRENCIES.traject.require),
+    },
+    {
+        unl: ()=>!player.omni.active&&(player.hadron.times > 0 || isSSObserved('sun')),
+        curr: "hadron",
+        req: ()=>player.fish.gte(CURRENCIES.hadron.require),
+    },
+    {
+        unl: ()=>!player.omni.god && player.omni.active && player.omni.tier.gte(7),
+        curr: "transcend",
+        req: ()=>player.fish.gte(CURRENCIES.transcend.require),
+    },
+    {
+        unl: ()=>!player.omni.god && player.omni.active && player.omni.tier.gte(20),
+        reset: "reaction",
+        curr: "nucleus",
+        req: ()=>player.omni.transcend.gte(CURRENCIES.nucleus.require),
+    },
+    {
+        unl: ()=>!player.omni.god && player.omni.active && player.omni.tier.gte(40),
+        reset: "runeification",
+        curr: "rune-fragments",
+        req: ()=>player.fish.gte(CURRENCIES["rune-fragments"].require),
+    },
+]
+
+const PROGRESS = [
+    {
+        cond_text: true,
+        get amount() { return CURRENCIES.fish.total },
+        require: 1e36,
+        logHeight: 1,
+    },{
+        auto: true,
+        get amount() { return CURRENCIES.prestige.amount },
+        require: 1e3,
+    },{
+        auto: true,
+        get amount() { return CURRENCIES.prestige.amount },
+        require: 1e9,
+        logHeight: 1,
+    },{
+        auto: true,
+        get amount() { return player.shark_level },
+        require: 110,
+    },{
+        auto: true,
+        get amount() { return player.explore.depth[0] },
+        require: 10935,
+    },{
+        cond_text: true,
+        get amount() { return CURRENCIES.prestige.total },
+        require: '1e450',
+        logHeight: 1,
+    },{
+        auto: true,
+        get amount() { return CURRENCIES.core.amount },
+        require: 10000,
+    },{
+        auto: true,
+        get amount() { return player.shark_level },
+        require: 1000,
+    },{
+        auto: true,
+        get amount() { return CURRENCIES.core.amount },
+        require: 1e72,
+        logHeight: 1,
+    },{
+        auto: true,
+        get amount() { return CURRENCIES.fish.total },
+        require: 'e6e15',
+        logHeight: 2,
+    },{
+        cond_text: true,
+        get amount() { return CURRENCIES.fish.total },
+        require: 'e1.5e18',
+        logHeight: 2,
+    },{
+        auto: true,
+        get amount() { return CURRENCIES.humanoid.amount },
+        require: 10,
+    },{
+        auto: true,
+        get amount() { return CURRENCIES.humanoid.amount },
+        require: 20,
+    },{
+        auto: true,
+        get amount() { return player.humanoid.mining_tier },
+        require: 6,
+    },{
+        auto: true,
+        get amount() { return player.humanoid.mining_tier },
+        require: 16,
+    },{
+        auto: true,
+        get amount() { return player.humanoid.mining_tier },
+        require: 34,
+    },{
+        get auto() { return player.singularity.first },
+        cond_text: true,
+        get amount() { return player.humanoid.particle_accel.percent.reduce((x,y)=>Decimal.add(x,y)) },
+        require: 6,
+    },{
+        auto: true,
+        get amount() { return player.singularity.best_bh },
+        require: 8,
+    },{
+        cond_text: true,
+        get amount() { return CURRENCIES.fish.total },
+        require: 'ee10000',
+        logHeight: 2,
+    },{
+        auto: true,
+        get amount() { return CURRENCIES["dark-matter"].total },
+        require: 1e12,
+        logHeight: 1,
+    },{
+        cond_text: true,
+        get amount() { return CURRENCIES.fish.total },
+        require: 'ee9e15',
+        logHeight: 3,
+    },{
+        auto: true,
+        get amount() { return CURRENCIES.hadron.total },
+        require: 10,
+    },{
+        auto: true,
+        get amount() { return CURRENCIES.hadron.total },
+        require: '1e1000',
+        logHeight: 1,
+    },{
+        auto: true,
+        get amount() { return player.shark_tier },
+        require: 111,
+    },{
+        auto: true,
+        get amount() { return CURRENCIES.hadron.total },
+        require: 'e1e6',
+        logHeight: 1,
+    },{
+        auto: true,
+        get amount() { return CURRENCIES.fish.total },
+        require: '4 PT 1600',
+        logHeight: 4,
+    },{
+        auto: true,
+        get amount() { return player.hadron.dna },
+        require: 1000,
+    },{
+        cond_text: true,
+        get amount() { return player.hadron.dna },
+        require: 1e100,
+        logHeight: 1,
+    },{
+        cond_text: true,
+        get amount() { return player.total_fish.mul(+player.omni.tier.gte(7)) },
+        require: 1e33,
+        logHeight: 1,
+    },{
+        cond_text: true,
+        get amount() { return player.omni.transcend.mul(+player.omni.tier.gte(20)) },
+        require: '1e800',
+        logHeight: 1,
+    },{
+        cond_text: true,
+        get amount() { return player.total_fish.mul(+player.omni.tier.gte(40)) },
+        require: 'ee60',
+        logHeight: 2,
+    },{
+        auto: true,
+        get amount() { return player.omni.overmodification },
+        require: 178,
+    },
+]
+
+function increaseFeature(v) {
+    if (player.feature == v-1) player.feature++;
+}
+
+const CONFIRMATIONS = {
+    prestige: [()=>player.prestige.times>0],
+    core: [()=>player.core.times>0],
+    humanoid: [()=>player.humanoid.times>0],
+    'black-hole': [()=>player.singularity.first],
+    sacrifice: [()=>player.singularity.sac_times>0],
+    hadron: [()=>player.hadron.times>0],
+    transcend: [()=>!player.omni.god && player.omni.transcendences>0],
+    reaction: [()=>!player.omni.god && player.omni.reactions>0],
+    runeification: [()=>!player.omni.god && player.omni.runeifications>0],
+}

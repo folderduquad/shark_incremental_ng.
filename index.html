@@ -1,0 +1,789 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style/main.css">
+    <link rel="stylesheet" href="style/icon-font.css">
+    <link rel="stylesheet" href="style/text-style.css">
+    <link rel="stylesheet" href="style/radio.css">
+    <link rel="stylesheet" href="style/notify.css">
+    <link rel="icon" href="textures/shark.png">
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mrredshark77.github.io/shark-incremental/" />
+    <meta property="og:title" content="Shark Incremental" />
+    <meta property="og:description" content="Shark Incremental made by MrRedShark77." />
+    <meta property="og:image" content="https://mrredshark77.github.io/shark-incremental//textures/shark.png" />
+
+    <title>Shark Incremental</title>
+
+    <script src="js/modules/icon.js"></script>
+
+    <script src="js/modules/break_eternity.js"></script>
+    <script src="js/modules/radio.js"></script>
+    <script src="js/modules/graph.js"></script>
+    <script src="js/modules/popup.js"></script>
+    <script src="js/modules/notify.js"></script>
+    <script src="js/modules/tooltip.js"></script>
+    <script src="js/format.js"></script>
+    <script src="js/modules/formulas.js"></script>
+    <script src="js/modules/scalings.js"></script>
+    <script src="js/main.js"></script>
+
+    <script src="js/modules/currency.js"></script>
+
+    <script src="js/features/offline.js"></script>
+
+    <script src="js/features/automation.js"></script>
+    <script src="js/features/shark.js"></script>
+    <script src="js/features/research.js"></script>
+    <script src="js/features/explore.js"></script>
+    <script src="js/features/core-reactor.js"></script>
+    <script src="js/features/core-radiation.js"></script>
+    <script src="js/features/core-assembler.js"></script>
+    <script src="js/features/evolution.js"></script>
+    <script src="js/features/cultivation.js"></script>
+    <script src="js/features/forge.js"></script>
+    <script src="js/features/particle-accel.js"></script>
+    <script src="js/features/singularity.js"></script>
+    <script src="js/features/solar-system.js"></script>
+    <script src="js/features/constellation.js"></script>
+
+    <script src="js/features/hadron/hadron.js"></script>
+    <script src="js/features/hadron/gal-explore.js"></script>
+    <script src="js/features/hadron/dna.js"></script>
+
+    <script src="js/features/resets.js"></script>
+
+    <script src="js/features/omni/omni.js"></script>
+    <script src="js/features/omni/undead.js"></script>
+    <script src="js/features/omni/decay-series.js"></script>
+    <script src="js/features/omni/isotopes.js"></script>
+    <script src="js/features/omni/rune.js"></script>
+
+    <script src="js/features/loop/rebirth.js"></script>
+
+    <script src="js/temp.js"></script>
+    <script src="js/calc.js"></script>
+
+    <script src="js/element.js"></script>
+    <script src="js/keybinds.js"></script>
+
+    <!-- Languages Setup -->
+
+    <script src="js/languages/language.js"></script>
+
+    <script src="js/languages/lang-en.js"></script>
+    <script src="js/languages/lang-ru.js"></script>
+    <script src="js/languages/lang-es.js"></script>
+    <script src="js/languages/lang-fr.js"></script>
+    <script src="js/languages/lang-vn.js"></script>
+    <script src="js/languages/lang-zh.js"></script>
+    <script src="js/languages/lang-pt.js"></script>
+    <script src="js/languages/lang-ko.js"></script>
+    <script src="js/languages/lang-pl.js"></script>
+    <script src="js/languages/lang-ja.js"></script>
+
+    <!-- Load Scripts -->
+
+    <script src="js/tab.js"></script>
+    <script src="js/save.js"></script>
+    <script src="js/load.js"></script>
+</head>
+<body onload="loadGame()">
+    <input id="copy" style="position: absolute; top: 0; left: 0; user-select: all; visibility: hidden;">
+    <div id="app" style="display: none;">
+        <div style="position: relative;" id="main-div">
+            <div id="main-background"></div>
+            <div id="currs-top">
+                <div class="curr-top">
+                    <div>1.23e123,456,789 <text-style text="prestige">Prestige</text-style> Shards</div><button>Reset</button>
+                </div>
+            </div>
+            <div id="game-speed-div"></div>
+            <div id="fish-div">Your <text-style text="shark">Shark</text-style> has eaten <h2><text-style text="fish" id="fish-amount">38.14SpDc</text-style></h2> (108.9SxDc/s) fish.</div>
+            <div id="antimatter-div"></div>
+            <div id="god-fish-div"></div>
+            <div id="antimatter-god-div">Equivalent to ???</div>
+            <div id="antimatter-equivalent-div">Equivalent to ???</div>
+            <div id="main-line" class="main-line"></div>
+            <div id="tabs"></div>
+        </div>
+
+        <div id="shark-upgs-tab">
+            <div id="shark-div" class="table-center">
+                <div id="shark-stats"></div>
+                <button class="locked" id="shark-button" onclick="upgradeShark()"></button>
+                <div id="shark-bonus"></div>
+            </div>
+
+            <button id="omni-shark-button" class="omni" onclick="OMNI.increase()">
+                Condense everything to increase your shark's omnipotence for a big reward.
+                <hr class="line">
+                Require: ???
+            </button>
+        </div><div id="auto-tab">
+            <div id="auto-table">
+                <div class="auto-div">
+                    <div class="auto-name">Auto-Shark Level</div>
+                    <div>Interval: 1.000s ➜ 0.800s</div>
+                    <button class="auto-button">Decrease Interval by 20%.<br>Cost: ???</button>
+                    <button class="auto-button-switch">OFF</button>
+                </div>
+            </div>
+        </div><div id="research-tab">
+            <div class="table-center" style="align-items: center;">
+                <div id="radio-max-research-amt" class="input-radio"></div>
+                <div style="margin: 10px; align-items: center;" class="table-center" id="research-page-div">
+                    <button style="height: 40px; width: 40px;" onclick="changeResearchPage(-1)">◀</button>
+                    <div>
+                        <input type="number" value="1" min="1" step="1" id="research-page" class="no-arrows">
+                        <div id="research-total-pages"></div>
+                    </div>
+                    <button style="height: 40px; width: 40px;" onclick="changeResearchPage(1)">▶</button>
+                </div>
+                <div id="radio-visible-research" class="input-radio"></div>
+            </div>
+            <button class="half-huge-btn" id="research-all-btn" onclick="purchaseAllResearch()"></button>
+            <div id="research-table">
+                <div class="research-div">
+                    <div class="research-name">Prestigious Agility</div>
+                    <div class="research-desc">'Shark Agility' now affects the base of <text-style text="shark">Shark</text-style> Level's <text-style text="prestige">Prestige</text-style> Shard bonus at a reduced rate.</div>
+                    <div class="research-short-text"><b>Require:</b> 10,000,000 Prestige Shard</div>
+                    <div class="research-status">
+                        <div><b>Not Purchased</b></div>
+                        <div><b>Effect:</b> +0.41</div>
+                    </div>
+                    <button class="research-button">Purchase</button>
+                </div>
+            </div>
+        </div><div id="explore-tab">
+            <div id="next-explore"></div>
+            <div id="explore-table">
+                <div class="explore-div">
+                    <div class="explore-desc">
+                        <button>Your base is +1/s.<br>Explore the ocean!</button>
+                        <div>
+                            <div style="min-height: 98px; text-align: left;">
+                                <h3>Pacific Ocean</h3><br>
+                                <text-style text="coral">Corals</text-style>: 0<br>
+                                <b>Effect</b>: ???<br>
+                                <b>Depth</b>: 0m / 10,935m
+                            </div><div class="table-left">
+                                <button class="explore-cost">Double <text-style text="coral">Corals</text-style> gained.<br>Cost: ???</button>
+                                <button class="explore-cost">Double depth progression gained.<br>Cost: ???</button>
+                            </div>
+                        </div><div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div id="core-reactor-tab">
+            <div id="core-reactor-table">
+                <button class="core-reactor-button">
+                    <div class="core-reactor-symbol">Fe</div>
+                    <div class="core-reactor-desc">This is Iron.</div>
+                </button><button class="core-reactor-button">
+                    <div class="core-reactor-symbol">Ni</div>
+                    <div class="core-reactor-desc">This is Nickel.</div>
+                </button><button class="core-reactor-button">
+                    <div class="core-reactor-symbol">O</div>
+                    <div class="core-reactor-desc">This is Oxygen.</div>
+                </button><button class="core-reactor-button">
+                    <div class="core-reactor-symbol">Ne</div>
+                    <div class="core-reactor-desc">This is Neon.</div>
+                </button>
+            </div>
+            <p id="core-reactor-bonus"></p>
+        </div><div id="core-radiation-tab">
+            <details id="radioactive-summary"></details>
+            <table class="table">
+                <tr>
+                    <td style="width: 50%;">
+                        <p id="radioactive-div"></p>
+                        <div class="table-center">
+                            <button class="huge-btn" id="start-cr-experiment" onclick="CORE_RAD.experiment()">Start the experiment.</button>
+                            <button class="huge-btn" id="upgrade-cr-btn" onclick="CORE_RAD.purchaseGeneration()">Upgrade the radiation generation.</button>
+                            <button class="huge-btn" id="reset-cr-btn" onclick="CORE_RAD.purchaseBoost()" style="font-size: 12px;">Reset the radiation, but increase its limit by <b>???</b>, and sometimes add a new boost or upgrade the boosts.</button>
+                        </div>
+                        <p id="core-temp-div"></p>
+                    </td><td style="width: 50%;">
+                        <p id="radioboost-div"></p>
+                        <div id="cr-boosts-div"></div>
+                    </td>
+                </tr>
+            </table>
+        </div><div id="core-assembler-tab">
+            <table class="table">
+                <tr>
+                    <td style="width: 50%;">
+                        <div class="table-center">
+                            <button id="ca-building-limit" class="huge-btn" onclick="purchaseCAMaxBuildings()"></button>
+                            <button class="huge-btn" id="core-assembler-erase" onclick="chooseCABuilding(-1)"></button>
+                        </div>
+                        <div id="core-assembler-grid"></div>
+                        <div id="core-assembler-choose-div" class="table-center"></div>
+                    </td><td style="width: 50%;">
+                        <p id="core-temp-after-div"></p>
+                        <div id="core-assembler-buildings" class="table-center"></div>
+                    </td>
+                </tr>
+            </table>
+        </div><div id="shark-rank-tab">
+            <table class="table">
+                <tr>
+                    <td style="width: 50%;">
+                        <div id="shark-elo-div"></div>
+                        <div id="shark-elo-calc"></div>
+                        <p id="shark-overpopulation"></p>
+                    </td><td style="width: 50%;">
+                        <div id="shark-rank-div"></div>
+                        <subtitle id="shark-rank-note"></subtitle>
+                        <div id="shark-rank-req-div"></div>
+                        <div id="shark-rank-bonus"></div>
+                    </td>
+                </tr>
+            </table>
+        </div><div id="evolution-tree-tab">
+            <table class="table">
+                <tr>
+                    <td style="width: 50%;">
+                        <div class="table-center">
+                            <button class="big-btn" id="import-evolution-tree" onclick="importEvolutionTree()"></button>
+                            <button class="big-btn" id="export-evolution-tree" onclick="exportEvolutionTree()"></button>
+                            <button class="big-btn" id="respec-evolution-tree" onclick="respecEvolutionTree()"></button>
+                            <button class="big-btn" id="respec-evolution-tree-2" onclick="respecEvolutionTree(false,true)"></button>
+                            <button class="big-btn" id="evolution-tree-preset" onclick="openEvolutionTreePreset()"></button>
+                        </div>
+                        <div id="evolution-tree"></div>
+                    </td><td style="width: 50%;">
+                        <p id="sharkoid-faith-div"></p>
+                        <div id="sharkoid-faith-btns"></div>
+                    </td>
+                </tr>
+            </table>
+        </div><div id="evolution-goal-tab">
+            <button class="big-btn" id="rerun-evolution" onclick="respecEvolutionTree(true)"></button>
+            <div id="evolution-goal-grid"></div>
+        </div><div id="cultivation-tab">
+            <table class="table">
+                <tr>
+                    <td style="width: 30%;">
+                        <div class="table-center">
+                            <div>
+                                <div id="mining-tier-div"></div>
+                                <button id="mining-tier-btn" class="huge-btn" style="font-size: 12px;" onclick="MINING_TIER.upgrade()"></button><br>
+                                <button id="mining-tier-undo-btn" class="huge-btn" style="font-size: 12px; min-height: 30px; height: auto; width: 250px;" onclick="MINING_TIER.undo()"></button>
+                            </div><div id="mining-ascend-unlock">
+                                <div id="mining-ascend-div"></div>
+                                <button id="mining-ascend-btn" class="huge-btn" style="font-size: 12px;" onclick="MINING_TIER.ascend()"></button><br>
+                                <button id="mining-ascend-undo-btn" class="huge-btn" style="font-size: 12px; min-height: 30px; height: auto; width: 250px;" onclick="MINING_TIER.ascend_undo()"></button>
+                            </div>
+                        </div>
+                        <div id="mining-tier-bonus"></div>
+                    </td><td style="width: 40%;">
+                        <p id="mining-text"></p>
+                        <p id="super-mining-text"></p>
+                        <div id="ores-grid"></div>
+                        <subtitle id="mining-note"></subtitle>
+                    </td><td style="width: 30%;">
+                        <h3 id="mined-resources-text"></h3>
+                        <div id="ores-list"></div>
+                    </td>
+                </tr>
+            </table>
+        </div><div id="forge-tab">
+            <div id="forge-status"></div><div style="width: 100%; min-height: 209px; margin-bottom: 3px; padding-bottom: 3px; border-bottom: solid 2px #075551;">
+                <div id="forge-description-div">
+                    <div id="forge-description">
+                        
+                    </div><div class="table-center">
+                        <button class="big-btn" id="forge-btn" onclick="doForge()">Forge</button>
+                    </div>
+                </div>
+            </div><div class="table-center" id="forge-table">
+                
+            </div>
+        </div><div id="particle-accel-tab">
+            <div id="particle-accel-table">
+                <div>
+                    <button class="particle-accel-button"></button>
+                    <div class="particle-accel-bar">
+                        <div class="particle-accel-bar-proj"></div>
+                        <div class="particle-accel-bar-inner"></div>
+                        <div class="particle-accel-bar-outer">12.3%</div>
+                    </div>
+                </div>
+            </div>
+            <button id="black-hole-button" onclick="doReset('black-hole')"></button>
+        </div>
+        
+        <div id="black-hole-tab">
+            <p id="black-hole-html"></p>
+            <p id="remnant-html"></p>
+            <div id="remnant-upgs">
+                <button class="remnant-upg">
+                    <b>Welcome</b> [0]<br>Shark Level Bonuses are <b style="color: lime;">???</b> stronger.<br>Cost: ???
+                </button>
+            </div>
+        </div><div id="singularity-milestones-tab">
+            <div id="singularity-milestones">
+                <div class="singularity-milestone">AAA</div>
+            </div>
+        </div><div id="solar-system-tab">
+            <div class="table-center" style="align-items: start;">
+                <div id="solar-system">
+                    <button id="ss-moon" style="grid-column: 1 / 3;"><img src="textures/solar-system/hidden.png"><br>Moon</button>
+                    <button id="ss-venus"><img src="textures/solar-system/hidden.png"><br>Venus</button>
+                    <button id="ss-mars"><img src="textures/solar-system/hidden.png"><br>Mars</button>
+                    <button id="ss-mercury"><img src="textures/solar-system/hidden.png"><br>Mercury</button>
+                    <button id="ss-jupiter"><img src="textures/solar-system/hidden.png"><br>Jupiter</button>
+                    <button id="ss-saturn"><img src="textures/solar-system/hidden.png"><br>Saturn</button>
+                    <button id="ss-uranus"><img src="textures/solar-system/hidden.png"><br>Uranus</button>
+                    <button id="ss-neptune"><img src="textures/solar-system/hidden.png"><br>Neptune</button>
+                    <button id="ss-pluto"><img src="textures/solar-system/hidden.png"><br>Pluto</button>
+                    <button id="ss-sun" style="grid-column: 1 / 3;"><img src="textures/solar-system/hidden.png"><br>Sun</button>
+                </div><div style="width: 600px; margin-left: 10px;">
+                    <p id="rocket-part-div"></p>
+                    <div id="rocket-part-btns"></div>
+                    <div id="solar-system-desc-div">
+                        <p id="ss-title">???</p>
+                        <div id="ss-desc" style="min-height: 120px; font-size: 14px;">
+                            Welcome to the Solar System! So, you are free to explore some planet, but it requires observing for powerful rewards. Force a singularity reset, resetting evolution tree (it returns after), but black hole’s reduction is forced to ^0.5, post-singularity features will not work, and you cannot explore any ocean. You can generate observatories in the space-base, which helps you progress faster with their upgrades. There is difficulty, it affects not progress, but the space-base features to make progress further. Let’s start with Moon of the Earth! It’s called Luna, but Theta, originally before the collision.
+                        </div><div id="ss-reward" style="min-height: 50px; font-size: 14px; margin: 5px 0px;">
+                            You must complete observing to reveal the reward.
+                        </div><div id="ss-goal" style="min-height: 30px;">
+                            Total Observatories Goal: ???
+                        </div><button id="observ-button" onclick="observeSolarSystem()">Start Observing</button>
+                    </div>
+                </div>
+            </div>
+        </div><div id="constellation-tab">
+            <p id="bh-tier-div"></p>
+            <button id="bh-tier-button" class="huge-btn" onclick="CONSTELLATION.upgrade()" style="font-size: 12px;">Reach the requirement to increase the black hole tier.</button>
+            <div id="constellation-progress" style="width: 500px; margin: auto;">
+                <div id="cp-bar"></div>
+                <div id="cp-text" class="p-text">???</div>
+            </div>
+            <p id="constellation-base"></p>
+            <div id="constellation-boosts-table" class="table-center">
+                <div class="constellation-boost"><div style="min-height: 40px;">You have <span>???</span> <span></span> placeholder.</div><hr class="line"><div>???</div></div>
+            </div>
+        </div>
+
+        <div id="space-base-tab">
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));">
+                <div>
+                    <p id="observ-div"></p>
+                    <div id="spacebase-upgs-o" class="spacebase-upgs"></div>
+                </div><div id="reserv-content">
+                    <p id="reserv-div"></p>
+                    <div id="spacebase-upgs-r" class="spacebase-upgs"></div>
+                </div><div id="traject-content">
+                    <p id="traject-div"></p>
+                    <div id="spacebase-upgs-t" class="spacebase-upgs"></div>
+                </div><div id="experiment-content">
+                    <p id="experiment-div"></p>
+                    <button class="huge-btn" id="experiment-button" onclick="EXPERIMENT_TIER.reset()" style="font-size: 12px;"></button>
+                    <div id="experiment-boosts"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="hadron-su-tab">
+            <p id="fundamental-amount-div"></p>
+            <subtitle id="starter-upg-note"></subtitle>
+            <div id="starter-upgrades-table">
+                <button>
+                    <div class="starter-upg-title">Shark Tier</div>
+                    <hr class="line">
+                    <div class="starter-upg-desc">Unlock Shark Tier similar to Shark Rank, but even more overpowered. Shark Tier is calculated by Shark IQ.</div>
+                    <div>Cost: ???</div>
+                </button>
+            </div>
+        </div><div id="shark-tier-tab">
+            <table class="table">
+                <tr>
+                    <td style="width: 50%;">
+                        <div id="shark-iq-div"></div>
+                        <div id="shark-iq-calc"></div>
+                    </td><td style="width: 50%;">
+                        <div id="shark-tier-div"></div>
+                        <subtitle id="shark-tier-note"></subtitle>
+                        <div id="shark-tier-req-div"></div>
+                        <div id="shark-tier-bonus"></div>
+                    </td>
+                </tr>
+            </table>
+        </div><div id="nucleobase-tab">
+            <div id="nucleobases-table">
+                <div class="nucleobase-div">
+                    <div class="nucleobase-name">
+                        <h3>Cytosine<sup>e123,456,789</sup></h3><br>
+                        <b>Amount:</b> e123,456,789
+                        <img src="textures/nucleobases/cytosine.png">
+                    </div><div class="nucleobase-exp">
+                        <div style="width: 100%; min-height: 156px;">
+                            <b>Experience:</b> 0 (+0/s)<br>
+                            <b>Next amount at experience:</b> ???
+                        </div><div class="table-left">
+                            <button class="explore-cost">Experience Base: <text-style style="color: lime;">+1</text-style><br>Cost: ???</button>
+                            <button class="explore-cost">Nucleobase Tier: <text-style style="color: lime;">0</text-style><br>Cost: ???</button>
+                        </div>
+                    </div><div>
+                        <h3>Nucleobase Boosts:</h3><ul>
+                            <li>???</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div><div id="gal-explore-tab">
+            <div id="gal-explore-table" class="table-center">
+                <div class="gal-explore unlocked">
+                    <div class="gal-explore-req">
+                        Shark Tier <b>111</b> required to unlock.
+                    </div><div class="gal-explore-div">
+                        <div style="min-height: 200px;">
+                            <h3><text-style text="gal-explore-0">Deep Blue Ocean</text-style></h3><br>
+                            <b>Score:</b> ???
+                            <hr class="black-line">
+                            <text-style text="core">Magmatic</text-style> fragments are raised by <b>0.5</b> to the exponent^2, <text-style text="core">Core</text-style> temperature is set to <b>log(x)</b>.
+                            <hr class="black-line">
+                            You have 0 (+0.00/s) <text-style text="gal-explore-0">Blue Algae</text-style>.
+                            <div>Boost Placeholder</div>
+                        </div><div class="table-center">
+                            <button class="explore-cost">Explore the ocean.</button>
+                            <button class="explore-cost">Increase <text-style text="gal-explore-0">Blue Algae</text-style> gained by <text-style style="color: lime;">+1</text-style>.<br>Cost: ???</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><div id="dna-tab">
+            <subtitle id="dna-note"></subtitle>
+            <div id="dna-background">
+                <div id="dna-texture"></div>
+                <div id="dna-content">
+                    <div id="dna-descirption">
+                        The length of your Shark <b>DNA (Deoxyribonucleic Acid)</b> is <h3>100</h3> (+0) nanometers.<br>
+                        Increases the tetration of Fish by <h4>+???</h4> and strengthens the first 4 Nucleobases by <h4>???%</h4>.
+                    </div>
+                    <button id="dna-button" onclick="DNA.expand()">
+                        Force a Hadronize reset to expand DNA.
+                    </button>
+                </div>
+            </div>
+            <table id="dna-milestone-table" align="center">
+                <tr>
+                    <td>300nm</td>
+                    <td>[REDACTED]</td>
+                </tr><tr class="completed">
+                    <td>300nm</td>
+                    <td>[REDACTED] [REDACTED]</td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="options-tab">
+            <div class="option-div">
+                <div>
+                    <h2 id="option-title-1">Main Options</h2>
+                    <div class="table-center" id="option-buttons">
+                        <button class="big-btn">Save</button>
+                        <button class="big-btn">Export via clipboard</button>
+                        <button class="big-btn">Export via file</button>
+                        <button class="big-btn">Import via prompt</button>
+                        <button class="big-btn">Import via file</button>
+                        <button class="big-btn" id="wipe">WIPE!!!</button>
+                    </div>
+                    <div class="item-left">
+                        <div id="radio-autosave" class="input-radio"></div>
+                        <br><div id="radio-autosave-time" class="input-radio"></div>
+                        <br><div id="radio-offline" class="input-radio"></div>
+                        <br><div id="radio-notify" class="input-radio"></div>
+                    </div>
+                </div><div>
+                    <h2 id="option-title-2">Notations</h2>
+                    <div class="item-left">
+                        <div id="radio-notation" class="input-radio"></div>
+                        <br><div id="radio-comma-format" class="input-radio"></div>
+                    </div>
+                </div>
+            </div><div class="option-div">
+                <div>
+                    <h2 id="option-title-3">Confirmations</h2>
+                    <div class="item-left" id="confirmations-table"></div>
+                </div><div>
+                    <h2 id="option-title-4">Languages</h2>
+                    <div class="table-left" id="languages"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="scalings-tab">
+            <subtitle id="scaling-info">Scalings will be added as soon as you reach them.</subtitle>
+            <table align="center" id="scalings-table"></table>
+        </div>
+
+        <div id="omni-rewards-tab">
+            <div id="omni-rewards-table" class="table-center">
+                <div class="omni-reward-div">
+                    <div>
+                        <h4>Omnipotence Tier 1</h4>
+                        <hr class="line">
+                        <div>Lorem ispum dolor sit amet consectetur adipisicing elit. Dolorum, voluptate. Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+                    </div>
+                </div>
+            </div>
+        </div><div id="shark-condenser-tab">
+            <div id="radio-condenser-ratio" class="input-radio"></div>
+            <div id="shark-condensers-table">
+                <button class="omni">
+                    Condense Transcendental shards
+                    <hr class="line">
+                    +123,456,789 bonus
+                    <br>
+                    <span class="small-text">(e123,456,789 condensed)</span>
+                </button>
+            </div>
+        </div><div id="undead-tab">
+            <div id="undead-essence-html"></div>
+            <div id="undead-upgrades-table"></div>
+        </div><div id="actinium-tab">
+            <table style="width: 100%;">
+                <tr style="vertical-align: top;">
+                    <td style="min-width: 540px; width: 50%;">
+                        <div id="decay-chain">
+                            <button class="decay-chain-btn omni" style="grid-column: 2; grid-row: 5;"><div>Level 0</div><div class="decay-chain-element"><supsub><sup>207</sup><sub>82</sub></supsub>Pb</div><div>0</div></button>
+                        </div>
+                    </td><td>
+                        <button class="omni big-btn" style="width: 200px;" id="decay-chain-buy-all" onclick="purchaseAllDecaySeries()"></button>
+                        <div id="decay-chain-description" style="margin-top: 10px;">
+                            <h3 id="decay-chain-title">Lead-207</h3>
+                            <div id="decay-chain-amount">Amount: 0</div>
+                            <div id="decay-chain-level">Level: 0</div>
+                            <table id="decay-table" align="center">
+                                <tr>
+                                    <td><supsub><sup>207</sup><sub>82</sub></supsub>Pb</td>
+                                    <td>B</td>
+                                    <td>C</td>
+                                </tr>
+                            </table>
+                            <div class="table-center" style="margin-top: 10px;">
+                                <button class="omni big-btn" style="width: 200px;" id="decay-chain-cost" onclick="purchaseDecaySeries(choosedDecaySeries)">Cost: ???</button>
+                                <button class="omni big-btn" style="width: 200px;" id="decay-chain-max" onclick="purchaseDecaySeries(choosedDecaySeries,true)">Buy Max</button>
+                            </div>
+                            <div class="table-center">
+                                <ul id="decay-chain-boosts">
+                                    <li>???</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div><div id="particles-tab">
+            <table class="table">
+                <tr>
+                    <td style="width: 50%;">
+                        <div id="alpha-particle-div"></div>
+                        <div id="beta-particle-div"></div>
+                        <div id="gamma-ray-particle-div"></div>
+                    </td><td style="width: 50%;">
+                        <div id="barium-particle-div"></div>
+                        <div id="krypton-particle-div"></div>
+                        <div id="energy-particle-div"></div>
+                    </td>
+                </tr>
+            </table>
+            <button class="omni huge-btn" id="uranium-235-fission" onclick="startFission()">Insert one neutron into Uranium-235 to start fission.</button>
+        </div><div id="isotopes-tab">
+            <div id="isotopes-div"></div>
+            <div class="table-center" id="isotopes-table">
+                <div class="isotope-div">
+                    <div class="isotope-buttons">
+                        <button>+</button>
+                        <button>-</button>
+                    </div>
+                    <div class="isotope-symbol"><div><sup>1</sup>H</div></div>
+                    <div class="isotope-symbol"><div><sup>2</sup>H</div></div>
+                    <div class="isotope-symbol"><div><sup>3</sup>H</div></div>
+                    <div class="isotope-symbol"><div><sup>4</sup>H</div></div>
+                </div><div class="isotope-div">
+                    <div class="isotope-buttons">
+                        <button>+</button>
+                        <button>-</button>
+                    </div>
+                    <div class="isotope-symbol"><div><sup>3</sup>He</div></div>
+                    <div class="isotope-symbol"><div><sup>4</sup>He</div></div>
+                    <div class="isotope-symbol"><div><sup>5</sup>He</div></div>
+                    <div class="isotope-symbol"><div><sup>6</sup>He</div></div>
+                    <div class="isotope-symbol"><div><sup>7</sup>He</div></div>
+                </div>
+            </div>
+        </div><div id="rune-constructor-tab">
+            <div id="runes-div">
+                <div id="rune-top">
+                    <button id="rune-clear-all" onclick="clearRunes()">Clear all Runes</button>
+                    <button id="rune-erase-mode" onclick="switchRuneEraseMode()">Erase Mode</button>
+                </div>
+                <div id="rune-items">
+                    <div class="rune-div">
+                        <img src="textures/runes/fehu.png">
+                        <div class="rune-bottom"><text-style>???%</text-style></div>
+                    </div>
+                </div>
+                <div id="rune-grid">
+                    <div class="rune-div">
+                        <div class="rune-top"><text-style>???</text-style></div>
+                        <img src="textures/runes/fehu.png">
+                        <div class="rune-bottom"><text-style>???%</text-style></div>
+                    </div>
+                    <div class="rune-div"></div>
+                    <div class="rune-div"></div>
+                    <div class="rune-div"></div>
+                    <div class="rune-div"></div>
+                    <div class="rune-div"></div>
+                </div>
+                <div id="rune-effects">
+                    <div class="rune-effect">
+                        <div class="rune-effect-name"><text-style>Fehu</text-style><br>×123</div>
+                        <img src="textures/runes/fehu.png">
+                        <hr class="sub-line">
+                        <div class="rune-effect-desc">
+                            ???
+                        </div>
+                    </div><div class="rune-effect">
+                        <div class="rune-effect-name"><text-style>Fehu</text-style><br>×123</div>
+                        <img src="textures/runes/fehu.png">
+                        <hr class="sub-line">
+                        <div class="rune-effect-desc">
+                            Lorem ispum dolor sit amet consectetur adipisicing elit. Dolorum, voluptate. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        </div>
+                    </div>
+                </div>
+                <div id="rune-bottom">
+                    <button id="rune-upgrade-0" onclick="purchaseRuneUpgrade(0)">A</button>
+                    <button id="rune-upgrade-1" onclick="purchaseRuneUpgrade(1)">A</button>
+                    <button id="rune-upgrade-2" onclick="purchaseRuneUpgrade(2)">A</button>
+                    <button id="rune-upgrade-3" onclick="purchaseRuneUpgrade(3)">A</button>
+                </div>
+            </div>
+        </div><div id="rune-sacrifice-tab">
+            <subtitle id="rune-sacrifice-info"></subtitle>
+            <button class="omni" id="rune-sacrifice-btn" onclick="RUNE_SACRIFICE.enter()">
+                <h3 id="rune-sacrifice-tier">Sacrifice Tier I</h3>
+                <ul id="rune-sacrifice-res">
+                    <li>Fehu runes have no effect.</li>
+                    <li>Fish antimatter is reduced to logarithmic.</li>
+                </ul>
+                <div id="rune-sacrifice-goal"><b>Goal:</b> ???</div>
+                <div id="rune-sacrifice-reward"><b>Reward:</b> Sacrifice Fehu rune completely.</div>
+                <div id="rune-sacrifice-status"></div>
+            </button>
+        </div><div id="god-tab">
+            <button class="omni huge-btn" id="god-button" onclick="OMNI.enterGod()"></button>
+            <subtitle id="god-info"></subtitle>
+        </div><div id="rebirth-upgs-tab">
+            <div id="rebirth-points-div"></div>
+            <div id="rebirth-upgrades-div">
+                <button class="rebirth-upgrade"></button>
+            </div>
+            <subtitle id="rebirth-upgrades-note"></subtitle>
+        </div><div id="rebirth-past10-tab">
+            <table id="rebirth-past10-table" align="center">
+                <tr>
+                    <td>#1</td>
+                    <td>[REDACTED]</td>
+                    <td>[REDACTED]</td>
+                </tr><tr>
+                    <td>#2</td>
+                    <td>[REDACTED]</td>
+                    <td>[REDACTED] [REDACTED]</td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="shark-upgrades">
+            <div class="shark-upgrade">
+                <div class="shark-upgrade-div">
+                    <div><h2>Upgrade Name</h2><br>Level: 0</div>
+                    <div>x???</div>
+                    <div><button class="shark-upgrade-button">Cost: ???</button></div>
+                </div>
+                <div class="shark-upgrade-requirement"><div>???</div></div>
+            </div>
+        </div>
+
+        <div id="worth-shark">
+            <div>
+                <div></div>
+                <button id="worth-shark-button" onclick="activeOmni()">Your Shark is worthless, sorry...</button>
+            </div>
+        </div>
+
+        <div style="height: 60px;"></div>
+        <div id="bottom-div">
+            Shark Incremental v1.0 by MrRedShark77
+            <div id="feature-progress">
+                <div id="fp-bar"></div>
+                <div id="fp-text">Feature Progression</div>
+            </div>
+        </div>
+
+        <div id="black-hole"></div>
+        <div id="title-center"></div>
+
+        <div id="hadron-cutscene">
+            <text-style id="hadron-cutscene-text">Open your eyes before this point.</text-style>
+        </div>
+    </div>
+
+    <div id="popup">
+        <div id="popup-ctn">
+            <div id="popup-html"></div>
+            <div id="popup-btns"></div>
+        </div>
+    </div>
+
+    <div id="omni-cutscene">
+        <text-style id="omni-cutscene-text">Your shark became the omnipotence...</text-style>
+    </div>
+
+    <div id="offline" style="display: none;"> <!--  -->
+        <div id="offline-time"></div>
+        <div id="offline-html"></div>
+        <canvas id="offline-graph" class="graph" width="800" height="600"></canvas><br>
+        <button class="big-btn" id="offline-speed" onclick="offline.speed *= 2">Speed Offline</button>
+        <button class="big-btn" id="offline-done" onclick="offlineDone()" style="display: none;">Done</button>
+    </div>
+
+    <div id="tooltip-div"></div>
+
+    <div id="notify">
+        <!--
+        <div class="notify-ctn">
+            <img src="https://imageio.forbes.com/specials-images/imageserve/5942a879a7ea434078d51f5a/960x960.jpg?height=400&width=400&fit=bounds">
+            You stupid, clone?
+        </div><div class="notify-ctn">
+            <img src="https://imageio.forbes.com/specials-images/imageserve/5942a879a7ea434078d51f5a/960x960.jpg?height=400&width=400&fit=bounds">
+            Hello everybody, my name is Markiplier and welcome to Five Nights at Freddy's, an indie horror game that you guys suggested, en masse, and I saw that Yamimash played it and he said it was really really good... So I'm very eager to see what is up. And that is a terrifying animatronic bear! 'Family pizzeria looking for security guard to work the nightshift.' Oh... 12 a.m. The first night. If I didn't wanna stay the first night, why would I stay any more than... five... Why I stay any more than two- hello? Okay...
+        </div>
+        -->
+    </div>
+
+    <div id="ending" style="display: none;">
+        <div><img src="textures/shark.png" width="200px"></div>
+        <div><h1>Shark Incremental</h1> made by MrRedShark77</div>
+        <div><span id="ending-0">Congrulations! You beat the game in</span> <b id="ending-time">Forever</b>.</div>
+        <div id="ending-1">You have 3 options: rebirth your shark for an extra content; import the game; reset to the previous.</div>
+        <div class="table-center">
+            <button class="big-btn" id="ending-button-0" onclick="REBIRTH.reset()">Rebirth Shark</button>
+            <button class="big-btn" id="ending-button-1" onclick="importy()">Import from prompt</button>
+            <button class="big-btn" id="ending-button-2" onclick="importy_file()">Import from file</button>
+            <button class="big-btn" id="ending-button-3" onclick="REBIRTH.undo()">Reset to the previous</button>
+        </div>
+    </div>
+</body>
+</html>
