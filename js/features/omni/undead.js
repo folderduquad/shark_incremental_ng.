@@ -20,7 +20,7 @@ CURRENCIES.undead = {
     },
 
     get passive() {
-        UNDEAD.chance;
+        let chance = UNDEAD.chance;
         if (chance.lt(1)) return 0;
 
         if (hasResearch('u3')) chance = chance.mul(tmp.speed);
