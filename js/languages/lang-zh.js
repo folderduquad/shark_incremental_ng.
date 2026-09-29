@@ -1050,6 +1050,21 @@ LANGUAGES.ZH = {
         'omni-cutscene-texts': [`你的鲨鱼已成为全能鲨……`, `……那么，代价是什么呢？`],
         
         'tab-omni-rewards': `${toTextStyle("全能","omni")}层级奖励`,
+        'tab-elements': `${toTextStyle("元素","atom")}`,
+
+        'elements-purchased': '已购买',
+        'elements-quarks': '夸克',
+        'elements-next-cost': '下一元素花费',
+        'elements-next-effect': '下一效果',
+        'elements-god-cap': '神鲨上限加成',
+        'elements-all-bought': '全部已购买',
+        'elements-next-quark': '下次重置',
+        'element-effect-antiFish':  '反物质鱼产量',
+        'element-effect-transcend': '超越碎片产量',
+        'element-effect-undead':    '亡灵精华产量',
+        'element-effect-nucleus':   '原子核产量',
+        'element-effect-runeFrag':  '符文碎片产量',
+        'element-effect-gameSpeed': '游戏速度',
         'tab-shark-condenser': `${toTextStyle("鲨鱼","shark")}${toTextStyle("压缩器","omni")}`,
         'tab-undead': `${toTextStyle('亡灵','undead')}猎手`,
 

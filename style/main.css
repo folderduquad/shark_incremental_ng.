@@ -1822,3 +1822,82 @@ supsub sub {
 #rebirth-past10-table td:first-child {
 	font-weight: bold;
 }
+/* ==================== Element 层级样式 ==================== */
+#elements-tab {
+    padding: 10px;
+}
+#elements-info {
+    margin: 10px auto;
+    max-width: 800px;
+    background: #0004;
+    border: solid 2px #c7f7ff;
+    border-radius: 10px;
+    padding: 10px 20px;
+    color: white;
+    text-align: left;
+    box-shadow: inset 0 0 20px #c7f7ff;
+}
+#elements-info p {
+    margin: 6px 0;
+}
+#elements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 110px);
+    gap: 6px;
+    justify-content: center;
+    max-height: 70vh;
+    overflow-y: auto;
+    padding: 10px;
+}
+.element-btn {
+    width: 110px;
+    height: 110px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #189791;
+    border: solid 2px #075551;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform .12s;
+    color: white;
+    padding: 0;
+}
+.element-btn:hover {
+    transform: scale(1.06);
+    z-index: 1;
+}
+.element-btn .element-symbol {
+    font-size: 28px;
+    font-weight: bold;
+    color: #c7f7ff;
+    text-shadow: 0 0 6px #6cf;
+}
+.element-btn .element-name {
+    font-size: 12px;
+    margin-top: 2px;
+}
+.element-btn .element-id {
+    position: absolute;
+    top: 2px;
+    right: 6px;
+    font-size: 10px;
+    color: #ccc;
+}
+.element-btn.bought {
+    background-color: #11853e;
+    border-color: #07552e;
+    box-shadow: 0 0 8px lime, inset 0 0 10px #0008;
+}
+.element-btn.locked {
+    background-color: #043d3a;
+    border-color: #02302d;
+    color: #f44;
+    opacity: 0.85;
+}
+.element-btn.locked .element-symbol {
+    color: #f44;
+    text-shadow: none;
+}

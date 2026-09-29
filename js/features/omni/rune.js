@@ -386,6 +386,7 @@ CURRENCIES['rune-fragments'] = {
 
         x = expPow(x, hasResearch('d5') ? 3 : 2).mul(tmp.global_mult)
 
+        x = x.mul(tmp.el_effects?.runeFrag ?? 1)
         x = x.mul(getOmniReward(41,1)).mul(getCondenserBonus(3))
 
         return x.floor();

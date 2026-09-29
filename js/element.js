@@ -70,6 +70,7 @@ function setupHTML() {
     setupHadronHTML()
 
     setupOmniHTML()
+    setupElementsHTML()
     setupUndeadHTML()
     setupRuneHTML()
     REBIRTH.setupHTML()

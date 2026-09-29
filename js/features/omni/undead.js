@@ -14,11 +14,13 @@ CURRENCIES.undead = {
             x = x.pow(getRuneEffect('kaunan'))
         }
 
+        x = x.mul(tmp.el_effects?.undead ?? 1)
+
         return x.round()
     },
 
     get passive() {
-        let chance = UNDEAD.chance;
+        NDEAD.chance;
         if (chance.lt(1)) return 0;
 
         if (hasResearch('u3')) chance = chance.mul(tmp.speed);

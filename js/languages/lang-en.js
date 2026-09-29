@@ -1051,6 +1051,21 @@ LANGUAGES.EN = {
         'omni-cutscene-texts': [`Your shark became the omnipotence...`, `...but at what cost?`],
         
         'tab-omni-rewards': `${toTextStyle("Omnipotence","omni")} Rewards`,
+        'tab-elements': `${toTextStyle("Element","atom")}`,
+
+        'elements-purchased': 'Purchased',
+        'elements-quarks': 'Quarks',
+        'elements-next-cost': 'Next cost',
+        'elements-next-effect': 'Next effect',
+        'elements-god-cap': 'God Shark cap bonus',
+        'elements-all-bought': 'All elements purchased',
+        'elements-next-quark': 'Next reset',
+        'element-effect-antiFish':  'Anti-Fish gain',
+        'element-effect-transcend': 'Transcendental shards gain',
+        'element-effect-undead':    'Undead Essence gain',
+        'element-effect-nucleus':   'Atomic Nucleus gain',
+        'element-effect-runeFrag':  'Rune Fragments gain',
+        'element-effect-gameSpeed': 'Game Speed',
         'tab-shark-condenser': `${toTextStyle("Shark","shark")} ${toTextStyle("Condenser","omni")}`,
         'tab-undead': `${toTextStyle('Undead','undead')} Hunter`,
 

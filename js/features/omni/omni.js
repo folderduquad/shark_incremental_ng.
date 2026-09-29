@@ -249,6 +249,13 @@ const OMNI = {
     clear() {
         const O = player.omni
 
+        // --- 在清空反物质鱼前奖励夸克 ---
+        const qg = ELEMENTS.quarkGain
+        if (qg.gt(0)) {
+            O.quarks = O.quarks.add(qg)
+            O.total_quarks = O.total_quarks.add(qg)
+        }
+
         player.fish = E(0)
         player.total_fish = E(0)
 
@@ -323,7 +330,8 @@ const OMNI = {
 
         if (player.omni.god && player.fish.gte(this.godRequire2)) {
             player.omni.overmodification = player.omni.overmodification.add(1);
-            if (player.omni.overmodification.gte(178)) {
+            const godCap = E(178).add(ELEMENTS.godCapBonus);
+            if (player.omni.overmodification.gte(godCap)) {
                 player.end = true;
                 player.fish = EINF;
 
@@ -586,8 +594,13 @@ function getOmniSaveData() {
         rune_sacrificed: 0,
         rune_current_sacrifice: -1,
 
-        god: false,
+                god: false,
         overmodification: E(0),
+
+        // --- Element ---
+        quarks: E(0),
+        total_quarks: E(0),
+        elements: [],
     }
 
     for (let i = 0; i < OMNI.condensers.length; i++) {
@@ -603,6 +616,15 @@ function getOmniSaveData() {
     return s
 }
 
+CURRENCIES.quark = {
+    get amount() { return player.omni.quarks },
+    set amount(v) { player.omni.quarks = v.max(0) },
+
+    get total() { return player.omni.total_quarks },
+    set total(v) { player.omni.total_quarks = v.max(0) },
+
+    get gain() { return E(0) }, // only get quark at reset
+}
 CURRENCIES['anti-fish'] = {
     get amount() { return player.fish },
     set amount(v) { player.fish = v.max(0) },
@@ -616,6 +638,7 @@ CURRENCIES['anti-fish'] = {
         let x = Decimal.mul(getOmniReward(2,0), sharkUpgEffect('os1')).mul(sharkUpgEffect('os3')).mul(sharkUpgEffect('t1')).mul(tmp.global_mult)
 
         x = x.pow(sharkUpgEffect('os4'))
+        x = x.mul(tmp.el_effects?.antiFish ?? 1)
 
         if (!RUNE_SACRIFICE.in(0)) x = x.pow(getUndeadUpgradeEffect(0)).pow(decaySeriesEffect(1,0)).pow(tmp.omni.particles_effect[3]);
 
@@ -675,6 +698,8 @@ CURRENCIES.transcend = {
         
         x = expPow(x, exp).mul(sharkUpgEffect('t2')).mul(tmp.global_mult)
 
+        x = x.mul(tmp.el_effects?.transcend ?? 1)
+
         if (!RUNE_SACRIFICE.in(1)) x = x.mul(getCondenserBonus(0)).pow(getUndeadUpgradeEffect(1)).pow(decaySeriesEffect(2,0)).pow(tmp.omni.particles_effect[4]);
 
         if (!RUNE_SACRIFICE.in(1)) x = expPow(x, decaySeriesEffect(12,0));
@@ -703,6 +728,7 @@ CURRENCIES.nucleus = {
 
         x = expPow(x,exp).mul(tmp.global_mult)
 
+        x = x.mul(tmp.el_effects?.nucleus ?? 1)
         x = x.mul(tmp.omni.particles_effect[0]).mul(getCondenserBonus(2))
 
         x = x.pow(getRuneEffect('naudiz'))
@@ -768,10 +794,14 @@ function calculateGameSpeed() {
 
     if (!RUNE_SACRIFICE.in(-1)) x = x.max(10).log10();
 
+    x = x.mul(tmp.el_effects?.gameSpeed ?? 1)
+
     return x
 }
 
 function updateOmniTemp() {
+    tmp.el_effects = ELEMENTS.getEffects()
+
     tmp.omni.condensers = []
     for (let i = 0; i < OMNI.condensers.length; i++) if (OMNI.condensers[i][0]()) tmp.omni.condensers[i] = OMNI.condensers[i][2](player.omni.condensed[i]);
 

@@ -253,6 +253,12 @@ const TAB_IDS = {
     'omni-rewards': {
         html: updateOmniRewardsHTML,
     },
+    'elements': {
+        html: updateElementsHTML,
+        notify() {
+            return player.omni.quarks.gte(ELEMENTS.cost) && ELEMENTS.purchased.length < 118
+        },
+    },
     'shark-condenser': {
         html: updateSharkCondensersHTML,
     },
@@ -426,7 +432,15 @@ const TABS = [
     },{
         unl: () => player.omni.god || player.omni.tier.gte(63),
         stab: "god",
-    },{ // 15
+    },{
+        unl: () => player.omni.active && player.omni.tier.gte(8),
+        stab: "elements",
+        style: {
+            "background": `#1a0f1a repeating-linear-gradient(45deg, #0000 0 25%, #80f2 0 50%)`,
+            "backgroundSize": "100px 100px",
+            "color": "white",
+        },
+    },{ // 16
         unl: () => player.rebirth.first,
         id: "rebirth",
         stab: [
