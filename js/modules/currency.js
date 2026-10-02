@@ -161,7 +161,7 @@ const CURRENCIES = {
         get require() { return player.hadron.starter_upgs.includes(6) || isSSObserved('venus') ? E('e1.5e18') : this.next() },
 
         get base() { return Decimal.sub(10,simpleETEffect(15,0)) },
-        get mult() { return Decimal.mul(getPAEffect(3), tmp.global_mult) },
+        get mult() { return Decimal.mul(getPAEffect(3), tmp.global_mult.div(GAMEPLAY_BOOST)) },
         get exp() {
             let x = 1
             if (isSSObserved('venus')) x += 1.25;
@@ -187,7 +187,7 @@ const CURRENCIES = {
 
             x = x.log10().div(1.5e18).log(this.base).pow(this.exp)
             
-            x = x.mul(this.mult)
+            x = x.mul(this.mult).mul(GAMEPLAY_BOOST)
 
             if (!v) x = x.sub(player.humanoid.shark);
     

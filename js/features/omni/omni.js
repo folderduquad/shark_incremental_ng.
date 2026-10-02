@@ -796,7 +796,7 @@ function calculateGameSpeed() {
 
     x = x.mul(tmp.el_effects?.gameSpeed ?? 1)
 
-    return x
+    return boostEffect(x)
 }
 
 function updateOmniTemp() {

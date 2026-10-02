@@ -1,3 +1,5 @@
+const GAMEPLAY_BOOST = 1.2
+
 function sumBase(x,a) {
     return Decimal.pow(a,x).sub(1).div(Decimal.sub(a,1))
 }
@@ -102,3 +104,10 @@ function romanize(num) {
 }
 
 const IP = (i,x,y,w) => Math.floor(i / w + y) % w * w + (i % w + x) % w
+
+function boostEffect(value) {
+    if (Array.isArray(value)) return value.map(boostEffect)
+    if (value instanceof Decimal) return value.eq(0) || value.eq(1) ? value : value.mul(GAMEPLAY_BOOST)
+    if (typeof value == 'number') return value == 0 || value == 1 ? value : value * GAMEPLAY_BOOST
+    return value
+}

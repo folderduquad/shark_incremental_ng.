@@ -90,6 +90,7 @@ const REBIRTH = {
         x = (y.time = Decimal.div(86400, player.rebirth.best).sqrt().add(.5).max(1)).mul(x)
 
         if (this.hasUpgrade(9)) x = x.mul(1.5);
+        x = x.mul(GAMEPLAY_BOOST)
 
         y.other = x.div(y.base).div(y.time)
 

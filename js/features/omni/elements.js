@@ -38,7 +38,7 @@ const ELEMENTS = {
         const type = ELEMENT_EFFECT_TYPES[idx]
         return {
             type:  type.id,
-            value: Decimal.pow(type.base, tier),
+            value: boostEffect(Decimal.pow(type.base, tier)),
         }
     },
 
@@ -65,7 +65,7 @@ const ELEMENTS = {
         const f = player.fish.max(10)
         const x = f.log10().log10().max(1)
         if (isNaN(x.mag)) return E(1)
-        return x.floor()
+        return boostEffect(x.floor())
     },
 }
 

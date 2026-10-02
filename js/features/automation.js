@@ -6,7 +6,7 @@ const AUTOMATION = {
         unl: ()=>!player.omni.active&&(REBIRTH.hasUpgrade(0) || player.feature>=2 || player.singularity.best_bh.gte(2)),
         interval: [1,0.9],
 
-        cost: x=>Decimal.pow(3,x).mul(1e3),
+        cost: x=>Decimal.pow(3,x).mul(10),
         bulk: x=>x.div(1e3).log(3).floor().add(1),
 
         curr: "prestige",
